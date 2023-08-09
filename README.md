@@ -1,2 +1,2 @@
 # FlappyBirdCopia
-Remake do jogo FlappyBird feito para aprendizado e treino
+Super Mario Bros Remake to study porposes.
