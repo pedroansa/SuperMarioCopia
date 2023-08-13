@@ -36,9 +36,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static JFrame frame;
 	private Thread thread;
 	private boolean isRunning;
-	public static final int WIDGHT = 240;
+	public static final int WIDGHT = 500;
 	public static final int HEIGTH = 160;
-	public static final int SCALE = 3;
+	public static final int SCALE = 2;
 
 	private BufferedImage image;
 
@@ -57,6 +57,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static final double GRAVITYTOTAL = 10;
 	
 	public static int score = 0;
+
+	public static int lives = 3;
 	
 	private boolean gameOverEnter = false;
 
@@ -73,7 +75,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		image = new BufferedImage(WIDGHT, HEIGTH, BufferedImage.TYPE_INT_RGB);
 		spritesheet = new SpriteSheet("/spritesheet.png");
-		player = new Player(0, 0, WIDTH, HEIGHT);
+		player = new Player(0, 0, 12, 12);
 		entities = new ArrayList<Entity>();
 		world = new World("/map.png");
 		ui = new UI();

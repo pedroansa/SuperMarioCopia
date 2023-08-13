@@ -3,6 +3,7 @@ package com.pedrinhojogos.entities;
 import java.awt.image.BufferedImage;
 
 import com.pedrinhojogos.main.Game;
+import com.pedrinhojogos.world.Camera;
 import com.pedrinhojogos.world.World;
 
 public class Enemy extends Entity{
@@ -12,11 +13,18 @@ public class Enemy extends Entity{
     public Enemy(int x, int y, int width, int height) {
         super(x, y, width, height, ENEMY_FRONT);
         this.speed = 1;
-        //TODO Auto-generated constructor stub
+        this.deadsprite = Game.spritesheet.getSprite(48, 32, 16, 16);
     }
 
     @Override
     public void tick(){
+        if(this.dead){
+            deadFallback++;
+            if(deadFallback > 20){
+                Game.entities.remove(this);
+            }
+            return;
+        }
         this.x += dir * speed;
 
         if(World.isFree((int)(x + 10*dir), (int)(y)) ){

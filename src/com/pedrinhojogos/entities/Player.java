@@ -107,6 +107,7 @@ public class Player extends Entity {
 			}
 			// Here we block the jump
 			else{
+				jump = false;
 				blockjump = true;
 				timing = 0;
 			}
@@ -130,6 +131,24 @@ public class Player extends Entity {
 				}
 					
 			}
+			else{
+				for(int i = 0; i < Game.entities.size(); i++){
+				Entity e = Game.entities.get(i);
+
+				if (e instanceof Enemy){
+					if(Entity.isColidding(this, e)){
+						speedjump = -4;
+						blockjump = true;
+
+						e.Dies();
+					}
+						
+				}
+				
+			}
+			blockjump = true;
+			}
+			
 		}
 		//Trying to jump
 		else{
@@ -141,6 +160,27 @@ public class Player extends Entity {
 
 		// Moving y axis command
 		y += speedjump;
+
+		for(int i = 0; i < Game.entities.size(); i++){
+				Entity e = Game.entities.get(i);
+
+				if (e instanceof Enemy){
+					Rectangle box1 = new Rectangle(this.getX()+2 , this.getY()+2 , 10, 10);
+					Rectangle box2 = new Rectangle(e.getX()+2 , e.getY()+2 , 10, 10);
+					if(box1.intersects(box2)){
+						System.out.println("morreu");
+					}	
+				}
+
+				if (e instanceof Coin){
+					Rectangle box1 = new Rectangle(this.getX()+2 , this.getY()+2 , 10, 10);
+					Rectangle box2 = new Rectangle(e.getX()+2 , e.getY()+2 , 10, 10);
+					if(box1.intersects(box2)){
+						e.Dies();
+						Game.score++;
+					}
+				}
+		}
 
 		// Update Camera
 		Camera.x = Camera.clamp(this.getX() - (Game.WIDGHT/2), 0, World.WIDTH*16 - Game.WIDGHT);

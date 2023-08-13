@@ -10,6 +10,7 @@ public class UI {
 	public void render(Graphics g) {
 		g.setColor(Color.white);
 		g.setFont(new Font("arial", Font.BOLD,9));
-		g.drawString(""+Game.score, 55, 25);
+		g.drawString(""+Game.score, 220, 15);
+		g.drawString(""+Game.lives, 20, 15);
 	}
 }

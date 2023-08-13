@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.pedrinhojogos.entities.Coin;
 import com.pedrinhojogos.entities.Enemy;
 import com.pedrinhojogos.entities.Player;
 import com.pedrinhojogos.enums.TileType;
@@ -53,8 +54,14 @@ public class World {
                         Game.entities.add(enemy);
                         tiles[x + (y * WIDTH)] = new Tile(x*16, y*16, TileType.NOTHING, true);
                     }
-                    
 
+                    else if(pixels[x + (y * WIDTH)] == 0xFFFFEC00){
+                        Coin coin = new Coin(x*16, y*16, 16, 16);
+                        Game.entities.add(coin);
+                        tiles[x + (y * WIDTH)] = new Tile(x*16, y*16, TileType.NOTHING, true);
+                    }
+                    
+                    
                     else{
                         tiles[x + (y * WIDTH)] = new Tile(x*16, y*16, TileType.NOTHING, true);
                     }
@@ -97,7 +104,7 @@ public class World {
         int yfinal = ystart + (Game.HEIGTH/16);
 
         for (int x = xstart; x <= xfinal; x++){
-            for (int y = ystart; y < yfinal; y++){
+            for (int y = ystart; y <= yfinal; y++){
                 if(x < 0 || y < 0 || x >= WIDTH || y >= HEIGTH)
                     continue;
                     
