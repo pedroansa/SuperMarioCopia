@@ -10,11 +10,10 @@ import com.pedrinhojogos.main.Game;
 public class Tile {
 	public static BufferedImage TILE_FLOOR = Game.spritesheet.getSprite(0, 0, 16, 16);
 	public static BufferedImage TILE_SUBFLOOR = Game.spritesheet.getSprite(0, 16, 16, 16);
-	public static BufferedImage TILE_NOTHING = Game.spritesheet.getSprite(0, 80, 16, 16);
+	public static BufferedImage TILE_NOTHING = Game.spritesheet.getSprite(0, 32, 16, 16);
 	
 	private BufferedImage sprite;
 	private double x, y;
-	private final double speed = 0.5;
 	private TileType type;
 	private boolean penetrable;
 	

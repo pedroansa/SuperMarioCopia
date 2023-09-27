@@ -34,6 +34,11 @@ public class World {
                 for (int y = 0; y < HEIGTH; y++){
 
 
+                    if(pixels[x + (y * WIDTH)] == 0xFF000000){
+                        // Tile Floor
+                        tiles[x + (y * WIDTH)] = new Tile(x*16, y*16, TileType.NOTHING, false);
+                    }
+
                     if(pixels[x + (y * WIDTH)] == 0xFFFFFFFF){
                         // Tile Chao
                         if(y > 0 && pixels[x + ((y-1) * WIDTH)] == 0xFFFFFFFF)
@@ -88,6 +93,11 @@ public class World {
 		
 		int x4 = (xnext+TILE_SIZE-5) / TILE_SIZE;
 		int y4 = (ynext+TILE_SIZE) / TILE_SIZE;
+
+        if(x3 + (y3*WIDTH) >= tiles.length || x4 + (y4*WIDTH) >= tiles.length){
+            Game.player.morto = true;
+            return true;
+        }
 		
 		return !((tiles[x1 + (y1*WIDTH)].getPenetrable()) ||
 				(tiles[x2 + (y2*WIDTH)].getPenetrable()) ||
