@@ -108,13 +108,16 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	}
 
 	public static void RestartGame() {
-		// gameState = "NORMAL";
-		// Game.spritesheet = new SpriteSheet("/spritesheet.png");
-		// player = new Player(Game.HEIGTH/2, 16,16);
+		gameState = "NORMAL";
+		player = new Player(0, 0, 12, 12);
+		entities = new ArrayList<Entity>();
+		world = new World("/map.png");
+		Game.lives--;
+		if(Game.lives < 0)
+			Game.lives = 3;
 
-		// int y = rand.nextInt(HEIGTH-100);
-		// score = 0;
-		// return;
+		score = 0;
+		return;
 	}
 
 	public void tick() {
@@ -255,7 +258,6 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		}
 
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			System.out.println("oi");
 			player.moved = 1;
 		}
 
@@ -263,9 +265,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			player.moved = 2;
 
 		}
-		// if(e.getKeyCode() == KeyEvent.VK_DOWN){
+		if(e.getKeyCode() == KeyEvent.VK_SPACE){
+			if(gameState == "GAMEOVER"){
+				gameOverEnter = true;
+			}
 
-		// }
+		}
 
 	}
 

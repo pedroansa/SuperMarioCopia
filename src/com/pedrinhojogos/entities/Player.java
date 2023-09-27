@@ -48,6 +48,12 @@ public class Player extends Entity {
 	@Override
 	public void tick() {
 
+		//System.out.println((Game.HEIGTH * Game.SCALE) - 52);
+
+		if(this.morto){
+			Game.gameState = "GAMEOVER";
+			return;
+		}
 		if (moved == 0){
 			run_frame = 0;
 			if(speed < 0){
@@ -168,7 +174,7 @@ public class Player extends Entity {
 					Rectangle box1 = new Rectangle(this.getX()+2 , this.getY()+2 , 10, 10);
 					Rectangle box2 = new Rectangle(e.getX()+2 , e.getY()+2 , 10, 10);
 					if(box1.intersects(box2)){
-						System.out.println("morreu");
+						this.morto = true;
 					}	
 				}
 
@@ -188,23 +194,7 @@ public class Player extends Entity {
 
 	}
 
-	// private void CheckCollisionCano() {
-	// 	// TODO Auto-generated method stub
-	// 		if(!morto && isColidding(this,Game.cano)) {
-	// 			Game.gameState = "GAMEOVER";
-	// 			force = 0;
-	// 			this.morto = true;
-	// 		}
-		
-	// }
 	
-	// private static boolean isColidding(Entity e1, Cano e2) {
-	// 	Rectangle c1 = e1.createCollisionBox();
-	// 	Rectangle c2 = e2.createCollisionBox(false);
-	// 	Rectangle c3 = e2.createCollisionBox(true);
-
-	// 	return c1.intersects(c2) || c1.intersects(c3);
-	// }
 
 	@Override
 	public void render(Graphics g) {
